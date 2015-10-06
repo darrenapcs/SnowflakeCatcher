@@ -1,23 +1,42 @@
 Snowflake[] cluster;
 void setup()
 {
+  
   size(500, 500);
-  cluster = new Snowflake[50];
+  background(0);
+  cluster = new Snowflake[200];
+  for(int i = 0; i < cluster.length ; i++)
+   {
+    cluster[i] = new Snowflake();
+   } 
 
   //your code here
 }
 void draw()
 {
- int() 
-  cluster[].show();
-  cluster[].lookDown();
-  cluster[].move();
-  clutser[].erase();
-  cluster[].wrap();
+
+ for(int i = 0; i < cluster.length; i++) 
+ {
+  cluster[i].erase();
+  cluster[i].lookDown();
+  cluster[i].move();
+  cluster[i].wrap();
+  cluster[i].show();
+ }
   //your code here
 }
 void mouseDragged()
 {
+  if(mouseButton == LEFT)
+  {
+  fill(0,255,255);
+  ellipse(mouseX, mouseY, 15, 15);
+  }
+  if(mouseButton == RIGHT)
+  {
+    fill(0);
+    ellipse(mouseX, mouseY, 20, 20);
+  }
   //your code here
 }
 
@@ -25,13 +44,13 @@ class Snowflake
 {
   int x;
   int y;
-  int isMoving;
+  boolean isMoving;
 
-  //class member variable declarations
+
   Snowflake()
   {
-    x = (int)(Math.random()*300);
-    y = (int)(Math.random()*300);
+    x = (int)(Math.random()*500);
+    y = (int)(Math.random()*500);
     isMoving = true;
     //class member variable initializations
   }
@@ -43,22 +62,20 @@ class Snowflake
   }
   void lookDown()
   {
-    if ((y > 0 && y < 500) && get(x, y) != color(0))
-   
+    if ( x > 0 && x < 500 && y > 0 && (y + 4 < 500) && (get(x, y+4) != color(0)))
+     
       isMoving = false;
-    
-    else 
-      isMoving = true;
       
+    else 
     
-    
+      isMoving = true;
 
-    //your code here
   }
-  void erase()
+   void erase()
   {
     fill(0);
-    ellipse(x, y, 7, 7);
+
+    ellipse(x, y, 6,6);
     //your code here
   }
   void move()
@@ -66,6 +83,7 @@ class Snowflake
     if(isMoving == true)
     {
       y += 1;
+
     }
     //your code here
   }
@@ -74,7 +92,7 @@ class Snowflake
     if(y > 500)
     {
       y = 0;
-      x = (int)(Math.random()*500);
+       x = x + (int)(Math.random()*5)-2;
     }
     //your code here
   }
