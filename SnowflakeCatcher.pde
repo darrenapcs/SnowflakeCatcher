@@ -75,7 +75,7 @@ class Snowflake
   {
     fill(0);
 
-    ellipse(x, y, 6,6);
+    ellipse(x, y, 7,7);
     //your code here
   }
   void move()
